@@ -1193,27 +1193,38 @@ new Splide( '#slider1',{type:"loop", perPage:3, focus:"left",rewind:!0,breakpoin
                      
                      },
                             
-                 submitHandler: function(form) {
-    // 1. Show the loading spinner and hide the submit button
-    $('.submit-btn').addClass('d-none');                
-    $('.spinner-container').removeClass('d-none');
+                $("#form").validate({
+    rules: {
+        Name: { required: true, minlength: 2 },
+        Number: { required: true, number: true, minlength: 10 },
+        Email: { required: true, email: true },
+        Message: { required: true }
+    },
+    submitHandler: function(form) {
+        // Show spinner, hide button
+        $('.submit-btn').addClass('d-none');                
+        $('.spinner-container').removeClass('d-none');
 
-    $.ajax({
-        url: 'https://script.google.com/a/macros/expertcorporatesolutions.com/s/AKfycbzdivJs5O1E4XcxKdfcJkSYCBB_udBwA1OEo-yb-Dx8xTu72PWrLZ70AgEyGfQ6bVqgOw/exec',
-        type: "POST",             
-        data: $(form).serialize(),                                 
-        success: function(result) {
-            // 2. Hide the form and show the success div
-            $('fieldset').addClass('d-none');
-            $('.success').removeClass('d-none');      
-            $('.spinner-container').addClass('d-none');
-        },
-        error: function() {
-            alert("Something went wrong. Please try again.");
-            $('.submit-btn').removeClass('d-none');                
-            $('.spinner-container').addClass('d-none');
-        }
-    });
+        $.ajax({
+            // Added the missing comma here
+            url: 'https://script.google.com/a/macros/expertcorporatesolutions.com/s/AKfycbzdivJs5O1E4XcxKdfcJkSYCBB_udBwA1OEo-yb-Dx8xTu72PWrLZ70AgEyGfQ6bVqgOw/exec',
+            type: "POST",             
+            data: $(form).serialize(),                                 
+            success: function(result) {
+                // Hide the form and show the success message
+                $('fieldset').addClass('d-none');
+                $('.success').removeClass('d-none');      
+                $('.spinner-container').addClass('d-none');
+            },
+            error: function() {
+                alert("Submission failed. Please check your connection.");
+                $('.submit-btn').removeClass('d-none');                
+                $('.spinner-container').addClass('d-none');
+            }
+        });
+        return false; // Crucial: prevents standard form submission
+    }
+});
     return false; // Prevents the page from refreshing
 }   
              });
