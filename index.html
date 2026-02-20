@@ -1193,40 +1193,26 @@ new Splide( '#slider1',{type:"loop", perPage:3, focus:"left",rewind:!0,breakpoin
                      
                      },
                             
-                $("#form").validate({
-    rules: {
-        Name: { required: true, minlength: 2 },
-        Number: { required: true, number: true, minlength: 10 },
-        Email: { required: true, email: true },
-        Message: { required: true }
-    },
-    submitHandler: function(form) {
-        // Show spinner, hide button
-        $('.submit-btn').addClass('d-none');                
-        $('.spinner-container').removeClass('d-none');
-
-        $.ajax({
-            // Added the missing comma here
-            url: 'https://script.google.com/a/macros/expertcorporatesolutions.com/s/AKfycbzdivJs5O1E4XcxKdfcJkSYCBB_udBwA1OEo-yb-Dx8xTu72PWrLZ70AgEyGfQ6bVqgOw/exec',
-            type: "POST",             
-            data: $(form).serialize(),                                 
-            success: function(result) {
-                // Hide the form and show the success message
-                $('fieldset').addClass('d-none');
-                $('.success').removeClass('d-none');      
-                $('.spinner-container').addClass('d-none');
-            },
-            error: function() {
-                alert("Submission failed. Please check your connection.");
-                $('.submit-btn').removeClass('d-none');                
-                $('.spinner-container').addClass('d-none');
-            }
-        });
-        return false; // Crucial: prevents standard form submission
-    }
-});
-    return false; // Prevents the page from refreshing
-}   
+                    submitHandler: function(form) {
+            //             var contactNumber = $('input[name="Contact Number"]').val();
+            // $('input[name="ContactNumber"]').val('91' + contactNumber);
+                            $.ajax({
+                            url:'https://script.google.com/a/macros/expertcorporatesolutions.com/s/AKfycbzdivJs5O1E4XcxKdfcJkSYCBB_udBwA1OEo-yb-Dx8xTu72PWrLZ70AgEyGfQ6bVqgOw/exec'
+                            type: "POST",             
+                            dataType: 'json', // data type
+                            data: $("#form").serialize(),                                 
+                            // success: function(result) {
+                            //  $('fieldset').addClass('d-none');
+                            //    $('.success').toggleClass('d-none');      
+                            // }
+                            success: function(result) {
+                    // window.location.href = "thankyou.html";
+                    // window.open("thankyou.html");
+                    // location.reload(true);
+               }
+                        });
+                        return false;
+                    },     
              });
              }); 
 
