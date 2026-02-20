@@ -1193,7 +1193,8 @@ new Splide( '#slider1',{type:"loop", perPage:3, focus:"left",rewind:!0,breakpoin
                      
                      },
                             
-                  submitHandler: function(form) {
+                 submitHandler: function(form) {
+    // 1. Show the loading spinner and hide the submit button
     $('.submit-btn').addClass('d-none');                
     $('.spinner-container').removeClass('d-none');
 
@@ -1202,16 +1203,18 @@ new Splide( '#slider1',{type:"loop", perPage:3, focus:"left",rewind:!0,breakpoin
         type: "POST",             
         data: $(form).serialize(),                                 
         success: function(result) {
+            // 2. Hide the form and show the success div
             $('fieldset').addClass('d-none');
             $('.success').removeClass('d-none');      
+            $('.spinner-container').addClass('d-none');
         },
         error: function() {
-            alert("There was an error submitting the form. Please try again.");
+            alert("Something went wrong. Please try again.");
             $('.submit-btn').removeClass('d-none');                
             $('.spinner-container').addClass('d-none');
         }
     });
-    return false;
+    return false; // Prevents the page from refreshing
 }   
              });
              }); 
