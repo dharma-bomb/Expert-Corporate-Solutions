@@ -1371,7 +1371,30 @@ $(document).ready(function () {
 
     </script>
       
-      document.addEventListener('DOMContentLoaded', function () {
+<script>
+$(document).ready(function () {
+    // 1. YouTube Video Logic
+    $(".youtubevid1").click(function() {
+        var iframe = '<div class="ratio ratio-16x9 px-2"><iframe width="988" height="556" src="https://www.youtube.com/embed/4dK01UXBzKg?autoplay=1&mute=1" title="Gifts" frameborder="0" allowfullscreen></iframe></div>';                
+        $(this).html(iframe);                
+    });
+
+    // 2. Initialize Logo Sliders (Fixes visibility and animation)
+    const logoOptions = {
+        type: 'loop',
+        drag: 'free',
+        focus: 'center',
+        pagination: false,
+        arrows: false,
+        perPage: 3,
+        autoScroll: { speed: 1 }
+    };
+
+    new Splide('#splide1', logoOptions).mount(window.splide.Extensions);
+    new Splide('#splide6', { ...logoOptions, direction: 'rtl' }).mount(window.splide.Extensions);
+    new Splide('#splide7', logoOptions).mount(window.splide.Extensions);
+
+    // 3. Initialize Testimonial Slider (Fixes the missing section)
     new Splide('#slider1', {
         type: 'loop',
         perPage: 3,
@@ -1379,15 +1402,23 @@ $(document).ready(function () {
         gap: '20px',
         focus: 'center',
         breakpoints: {
-            1024: {
-                perPage: 2,
-            },
-            768: {
-                perPage: 1,
-            },
+            1024: { perPage: 2 },
+            768: { perPage: 1 }
         }
     }).mount();
+
+    // 4. Get Quote Button Scroll
+    $('.my-btn').click(function() {
+        $('.fixedbar').addClass('d-none');
+        $('html, body').animate({
+            scrollTop: $("form").offset().top
+        }, 10);
+    });
 });
+
+// 5. Initialize Animations
+AOS.init();
+</script>
 
 
 <script>
