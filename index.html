@@ -1409,7 +1409,10 @@ $(document).ready(function () {
         autoScroll: { speed: 1 }
     };
 
-  
+    new Splide('#splide1', logoOptions).mount(window.splide.Extensions);
+    new Splide('#splide6', { ...logoOptions, direction: 'rtl' }).mount(window.splide.Extensions);
+    new Splide('#splide7', logoOptions).mount(window.splide.Extensions);
+
     // 3. Initialize Testimonial Slider (Fixes the missing section)
     new Splide('#slider1', {
         type: 'loop',
@@ -1425,21 +1428,45 @@ $(document).ready(function () {
   
 }
   
-// ... and so on
-  
-    // 4. Get Quote Button Scroll
-    $('.my-btn').click(function() {
-        $('.fixedbar').addClass('d-none');
-        $('html, body').animate({
-            scrollTop: $("form").offset().top
-        }, 10);
-    });
-});      
+const splide = new Splide( '#splide1', {
+    type   : 'loop',
+    drag   : 'free',
+    focus  : 'center',
+    pagination: false,
+    perPage: 3,
+    autoScroll: {
+      speed: 0.2,
+    },
+  } ).mount( window.splide.Extensions );
 
-// 5. Initialize Animations
-AOS.init();
-  
-</script>
+    
+  const splide6 = new Splide( '#splide6', {
+    type   : 'loop',
+    drag   : 'free',
+    focus  : 'center',
+    pagination: false,
+    direction: 'rtl',
+    perPage: 3,
+    autoScroll: {
+      speed: 0.2,
+    },
+  } ).mount( window.splide.Extensions );
+
+
+      
+  const splide7 = new Splide( '#splide7', {
+    type   : 'loop',
+    drag   : 'free',
+    focus  : 'center',
+    pagination: false,
+    perPage: 3,
+    autoScroll: {
+      speed: 0.2,
+    },
+  } ).mount( window.splide.Extensions );
+
+    </script>
+
 
 
 <script>
