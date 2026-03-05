@@ -1409,10 +1409,7 @@ $(document).ready(function () {
         autoScroll: { speed: 1 }
     };
 
-    new Splide('#splide1', logoOptions).mount(window.splide.Extensions);
-    new Splide('#splide6', { ...logoOptions, direction: 'rtl' }).mount(window.splide.Extensions);
-    new Splide('#splide7', logoOptions).mount(window.splide.Extensions);
-
+  
     // 3. Initialize Testimonial Slider (Fixes the missing section)
     new Splide('#slider1', {
         type: 'loop',
