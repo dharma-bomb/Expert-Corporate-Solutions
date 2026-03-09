@@ -1425,16 +1425,23 @@ $(document).ready(function () {
   
 }
   
-const splide = new Splide( '#splide1', {
-    type   : 'loop',
-    drag   : 'free',
-    focus  : 'center',
-    pagination: false,
-    perPage: 3,
-    autoScroll: {
-      speed: 0.2,
-    },
-  } ).mount( window.splide.Extensions );
+const splide = new Splide('#slider1', {
+  type: 'loop',
+  drag: 'free',
+  focus: 'center',
+  pagination: false,
+  perPage: 3,
+  gap: '20px',
+  autoScroll: {
+    speed: 0.5
+  },
+  breakpoints: {
+    1024: { perPage: 2 },
+    768: { perPage: 1 }
+  }
+});
+
+splide.mount(window.splide.Extensions);
 
     
   const splide6 = new Splide( '#splide6', {
@@ -1461,7 +1468,7 @@ const splide = new Splide( '#splide1', {
       speed: 0.2,
     },
   } ).mount( window.splide.Extensions );
-  }
+ 
     </script>
 
 
